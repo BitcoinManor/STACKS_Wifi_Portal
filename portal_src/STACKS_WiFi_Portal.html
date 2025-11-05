@@ -1,0 +1,263 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>StacksWorth WiFi Setup</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: #000000;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      height: 100%;
+      width: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      background-color: #000000;
+      border-radius: 12px;
+      padding: 30px 24px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      border: 4px solid;
+      border-image: linear-gradient(135deg, #aaa, #eee) 1;
+      box-shadow: 0 0 25px rgba(192,192,192, 0.4), 0 0 10px rgba(255,255,255,0.1);
+    }
+
+    .card:hover {
+      box-shadow: 0 0 40px rgba(255,255,255, 0.6), 0 0 12px rgba(255,255,255,0.2);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .logo {
+      border: 2px solid silver;
+      background-color: #000000;
+      color: silver;
+      font-weight: bold;
+      padding: 14px 0;
+      border-radius: 6px;
+      font-size: 2.8rem;
+      letter-spacing: 4px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      margin-bottom: 18px;
+      font-size: 1.4rem;
+    }
+
+    .device-select {
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+
+    .device-select label {
+      margin: 0 10px;
+      cursor: pointer;
+    }
+
+    .form-group {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      flex: 1;
+      margin-right: 10px;
+      text-align: left;
+      text-transform: uppercase;
+    }
+
+    .form-group input,
+    .form-group select {
+      flex: 2;
+      padding: 8px 10px;
+      border-radius: 4px;
+      border: 1px solid #777;
+      background-color: #000000;
+      color: white;
+      font-size: 1rem;
+    }
+
+    .button {
+      margin-top: 20px;
+      width: 100%;
+      background: linear-gradient(145deg, #999999, #cccccc);
+      color: black;
+      font-weight: bold;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .button:hover {
+      background: linear-gradient(145deg, #cccccc, #eeeeee);
+    }
+
+    .version {
+      margin-top: 20px;
+      font-size: 0.85rem;
+      color: #777;
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 0.85rem;
+      color: #aaa;
+      text-align: center;
+    }
+
+    .footer a {
+      color: #fca420;
+      text-decoration: none;
+    }
+
+    .popup {
+      display: none;
+      background-color: #111;
+      color: #fca420;
+      border: 1px solid #fca420;
+      padding: 20px;
+      border-radius: 10px;
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      max-width: 360px;
+      text-align: center;
+      box-shadow: 0 0 10px #000;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">STACKSWORTH</div>
+    <h2>Wi-Fi Setup</h2>
+
+    <div class="device-select">
+      <label><input type="radio" name="device" value="Matrix" checked> Matrix</label>
+      <label><input type="radio" name="device" value="Spark"> Spark</label>
+    </div>
+
+    <div class="form-group">
+      <label for="ssid">SSID Wi-Fi</label>
+      <input type="text" id="ssid" name="ssid" placeholder="Your Network">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Password">
+    </div>
+
+    <div class="form-group">
+      <label for="city">City</label>
+      <input type="text" id="city" name="city" placeholder="e.g. Calgary">
+    </div>
+
+    <div class="form-group">
+      <label for="timezone">Time Zone</label>
+      <select id="timezone" name="timezone">
+        <option value="America/Denver">Mountain (MST/MDT)</option>
+        <option value="America/New_York">Eastern (EST/EDT)</option>
+        <option value="America/Chicago">Central (CST/CDT)</option>
+        <option value="America/Los_Angeles">Pacific (PST/PDT)</option>
+        <option value="Europe/London">London (GMT/BST)</option>
+        <option value="Europe/Berlin">Berlin (CET/CEST)</option>
+        <option value="Asia/Tokyo">Tokyo (JST)</option>
+        <option value="Asia/Kolkata">India (IST)</option>
+        <option value="Australia/Sydney">Sydney (AEST/AEDT)</option>
+        <option value="UTC">UTC</option>
+      </select>
+    </div>
+
+    <button class="button" onclick="saveAndReboot()">SAVE AND REBOOT</button>
+    <div class="version">v0.1.0 – 2025</div>
+  </div>
+  
+  <div class="footer">
+    STACKSWORTH • <a href="https://stacksworth.com" target="_blank">stacksworth.com</a>
+  </div>	
+  <div class="footer">
+    Built by <strong>Bitcoin Manor</strong> • <a href="https://bitcoinmanor.com" target="_blank">bitcoinmanor.com</a>
+  </div>
+
+  <div id="popup" class="popup">
+    <div style="text-align: right;">
+      <button onclick="hidePopup()" style="background:none; border:none; color:#fca420; font-size:1.2rem; cursor:pointer;">❌</button>
+    </div>
+    <p>✅ Settings saved. Rebooting now...</p>
+    <p>If your browser shows an error, you can ignore and close it.</p>
+    <p>You can now close this WiFi Setup screen.</p>
+
+  </div>
+
+
+  <script>
+  function saveAndReboot() {
+    const form = new FormData();
+    form.append("ssid", document.getElementById("ssid").value);
+    form.append("password", document.getElementById("password").value);
+    form.append("city", document.getElementById("city").value);
+    form.append("timezone", document.getElementById("timezone").value);
+    form.append("device", document.querySelector('input[name="device"]:checked').value);
+
+    fetch("/save", {
+      method: "POST",
+      body: form
+    })
+    .then(response => {
+      if (response.ok) {
+        showPopup();
+        setTimeout(() => {
+          window.location.href = "/reboot";
+        }, 3000);
+      } else {
+        console.warn("⚠️ Save returned non-OK response. Assuming reboot may have triggered.");
+        showPopup(); // Show popup anyway to avoid confusion
+      }
+    })
+    .catch(error => {
+      console.warn("⚠️ Connection dropped — likely rebooting. Showing popup anyway.");
+      console.error("Error:", error);
+      showPopup();
+    });
+  }
+
+    function showPopup() {
+    const popup = document.getElementById("popup");
+    popup.style.display = "block";
+    setTimeout(() => { popup.style.opacity = "1"; }, 10);
+  }
+
+
+    function hidePopup() {
+    const popup = document.getElementById("popup");
+    popup.style.opacity = "0";
+    setTimeout(() => { popup.style.display = "none"; }, 500);
+  }
+
+
+</script>
+
+
+</body>
+</html>
