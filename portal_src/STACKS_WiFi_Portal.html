@@ -251,7 +251,7 @@
   function saveAndReboot() {
     const form = new FormData();
     form.append("ssid", document.getElementById("ssid").value);
-    form.append("password", document.getElementById("password").value);
+    form.append("password", document.getElementById("pass").value);
     form.append("city", document.getElementById("city").value);
     form.append("timezone", document.getElementById("timezone").value);
     form.append("device", document.querySelector('input[name="device"]:checked').value);
