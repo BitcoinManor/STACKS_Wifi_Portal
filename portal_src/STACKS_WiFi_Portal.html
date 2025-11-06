@@ -146,6 +146,38 @@
       opacity: 0;
       transition: opacity 0.5s ease;
     }
+
+    .password-wrap { 
+      display: flex; 
+      align-items: center; 
+      gap: 8px; 
+      flex: 2;
+    }
+    
+    .password-wrap input {
+      flex: 1;
+      margin: 0;
+    }
+    
+    .pw-toggle {
+      background: none;
+      border: 1px solid #777;
+      border-radius: 4px;
+      padding: 6px 10px;
+      color: #ccc;
+      cursor: pointer;
+      font-size: 0.95rem;
+      line-height: 1;
+      min-width: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .pw-toggle:hover { 
+      border-color: #aaa; 
+      color: #eee; 
+    }
   </style>
 </head>
 <body>
@@ -163,10 +195,14 @@
       <input type="text" id="ssid" name="ssid" placeholder="Your Network">
     </div>
 
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" placeholder="Password">
-    </div>
+          <div class="form-group">
+        <label for="pass">Password:</label>
+        <div class="password-wrap">
+          <input type="password" id="pass" name="pass" maxlength="63" autocomplete="new-password" aria-describedby="passHelp">
+          <button type="button" class="pw-toggle" id="pwToggle" onclick="togglePassword()" aria-label="Show/hide password">👁</button>
+        </div>
+        <small id="passHelp" class="help-text">8-63 characters recommended</small>
+      </div>
 
     <div class="form-group">
       <label for="city">City</label>
@@ -254,6 +290,21 @@
     popup.style.opacity = "0";
     setTimeout(() => { popup.style.display = "none"; }, 500);
   }
+
+    function togglePassword() {
+      const passwordInput = document.getElementById('pass');
+      const toggleButton = document.getElementById('pwToggle');
+      
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        toggleButton.innerHTML = '🙈';
+        toggleButton.setAttribute('aria-label', 'Hide password');
+      } else {
+        passwordInput.type = 'password';
+        toggleButton.innerHTML = '👁';
+        toggleButton.setAttribute('aria-label', 'Show password');
+      }
+    }
 
 
 </script>
