@@ -110,6 +110,12 @@
       background: linear-gradient(145deg, #cccccc, #eeeeee);
     }
 
+    .button:active {
+      background: linear-gradient(145deg, #fca420, #ff8800);
+      color: white;
+      transform: scale(0.98);
+    }
+
     .version {
       margin-top: 20px;
       font-size: 0.85rem;
@@ -196,12 +202,11 @@
     </div>
 
           <div class="form-group">
-        <label for="pass">Password:</label>
+        <label for="password">Password:</label>
         <div class="password-wrap">
-          <input type="password" id="pass" name="pass" maxlength="63" autocomplete="new-password" aria-describedby="passHelp">
+          <input type="password" id="password" name="password" maxlength="63" autocomplete="new-password">
           <button type="button" class="pw-toggle" id="pwToggle" onclick="togglePassword()" aria-label="Show/hide password">👁</button>
         </div>
-        <small id="passHelp" class="help-text">8-63 characters recommended</small>
       </div>
 
     <div class="form-group">
@@ -222,6 +227,30 @@
         <option value="Asia/Kolkata">India (IST)</option>
         <option value="Australia/Sydney">Sydney (AEST/AEDT)</option>
         <option value="UTC">UTC</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="currency">Currency</label>
+      <select id="currency" name="currency">
+        <option value="USD" selected>US Dollar ($)</option>
+        <option value="CAD">Canadian Dollar (C$)</option>
+        <option value="EUR">Euro (€)</option>
+        <option value="GBP">British Pound (£)</option>
+        <option value="JPY">Japanese Yen (¥)</option>
+        <option value="AUD">Australian Dollar (A$)</option>
+        <option value="CHF">Swiss Franc (CHF)</option>
+        <option value="CNY">Chinese Yuan (¥)</option>
+        <option value="SEK">Swedish Krona (kr)</option>
+        <option value="NOK">Norwegian Krone (kr)</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="theme">Display Theme</label>
+      <select id="theme" name="theme">
+        <option value="scroll" selected>Dynamic Scroll</option>
+        <option value="fade">Smooth Fade</option>
       </select>
     </div>
 
@@ -251,9 +280,11 @@
   function saveAndReboot() {
     const form = new FormData();
     form.append("ssid", document.getElementById("ssid").value);
-    form.append("password", document.getElementById("pass").value);
+    form.append("password", document.getElementById("password").value);
     form.append("city", document.getElementById("city").value);
     form.append("timezone", document.getElementById("timezone").value);
+    form.append("currency", document.getElementById("currency").value);
+    form.append("theme", document.getElementById("theme").value);
     form.append("device", document.querySelector('input[name="device"]:checked').value);
 
     fetch("/save", {
@@ -292,7 +323,7 @@
   }
 
     function togglePassword() {
-      const passwordInput = document.getElementById('pass');
+      const passwordInput = document.getElementById('password');
       const toggleButton = document.getElementById('pwToggle');
       
       if (passwordInput.type === 'password') {
