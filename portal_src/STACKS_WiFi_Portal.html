@@ -217,16 +217,20 @@
     <div class="form-group">
       <label for="timezone">Time Zone</label>
       <select id="timezone" name="timezone">
-        <option value="America/Denver">Mountain (MST/MDT)</option>
-        <option value="America/New_York">Eastern (EST/EDT)</option>
-        <option value="America/Chicago">Central (CST/CDT)</option>
-        <option value="America/Los_Angeles">Pacific (PST/PDT)</option>
-        <option value="Europe/London">London (GMT/BST)</option>
-        <option value="Europe/Berlin">Berlin (CET/CEST)</option>
-        <option value="Asia/Tokyo">Tokyo (JST)</option>
-        <option value="Asia/Kolkata">India (IST)</option>
-        <option value="Australia/Sydney">Sydney (AEST/AEDT)</option>
-        <option value="UTC">UTC</option>
+        <option value="0">UTC (+0)</option>
+        <option value="1">London (+0/+1)</option>
+        <option value="2">Paris (+1/+2)</option>
+        <option value="3">Helsinki (+2/+3)</option>
+        <option value="4">Moscow (+3)</option>
+        <option value="5">Tokyo (+9)</option>
+        <option value="6">Sydney (+10/+11)</option>
+        <option value="7">Auckland (+12/+13)</option>
+        <option value="8">Hawaii (-10)</option>
+        <option value="9">Alaska (-9/-8)</option>
+        <option value="10">Pacific (-8/-7)</option>
+        <option value="11" selected>Mountain (-7/-6)</option>
+        <option value="12">Central (-6/-5)</option>
+        <option value="13">Eastern (-5/-4)</option>
       </select>
     </div>
 
