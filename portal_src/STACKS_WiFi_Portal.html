@@ -4,31 +4,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>StacksWorth WiFi Setup</title>
+  <title>STACKSWORTH Matrix Setup</title>
+  
+  <!-- 🔥 Custom Bitcoin Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%23fca420' stroke='%23ff8800' stroke-width='4'/><text x='50' y='65' font-family='Arial,sans-serif' font-size='60' font-weight='bold' text-anchor='middle' fill='%23000'>₿</text></svg>">
+  <!-- Fallback for older browsers -->
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==">
   <style>
     html, body {
-  margin: 0;
-  padding: 0;
-  background-color: #000000;
-  font-family: 'Segoe UI', sans-serif;
-  color: white;
-  width: 100%;
-}
+      margin: 0;
+      padding: 0;
+      background-color: #000000;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      height: 100%;
+      width: 100%;
+    }
 
     body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     .card {
       background-color: #000000;
       border-radius: 12px;
       padding: 30px 24px;
-      max-width: 500px;
-      width: 90%;
+      max-width: 1000px;
+      width: 95%;
       text-align: center;
       border: 4px solid;
       border-image: linear-gradient(135deg, #aaa, #eee) 1;
@@ -39,6 +44,87 @@
       box-shadow: 0 0 40px rgba(255,255,255, 0.6), 0 0 12px rgba(255,255,255,0.2);
       transition: box-shadow 0.3s ease;
     }
+
+    /* 📱 Two Column Layout for Desktop */
+    .form-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 30px;
+    }
+
+    .form-column {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .column-title {
+      color: #fca420;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      text-align: center;
+      border-bottom: 2px solid #333;
+      padding-bottom: 10px;
+    }
+
+    /* 📱 Mobile Responsive */
+@media (max-width: 768px) {
+  .form-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .card {
+    padding: 20px 16px;
+    max-width: 95%;
+  }
+  
+  .logo {
+    font-size: 2.2rem;
+    letter-spacing: 3px;
+  }
+}
+
+/* --- MOBILE FIXES FOR STACKSWORTH WiFi PORTAL --- */
+@media (max-width: 600px) {
+
+  .form-group {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+  }
+
+  .form-group label {
+    margin-bottom: 6px;
+    font-size: 0.8rem;
+    width: 100%;
+  }
+
+  .form-group input,
+  .form-group select {
+    width: 100%;
+  }
+
+  /* Fix personalization dashed box */
+  .personalization-box {
+    padding: 14px !important;
+    margin: 10px 0 !important;
+  }
+
+  /* Bitcoin Wisdom */
+  #btcQuote {
+    font-size: 0.75rem !important;
+    padding: 0 5px;
+  }
+
+  /* Popup resize for mobile */
+  .popup {
+    top: 5% !important;
+    width: 92% !important;
+  }
+}
+
 
     .logo {
       border: 2px solid silver;
@@ -185,120 +271,176 @@
       color: #eee; 
     }
 
-    @media (max-width: 600px) {
-  .form-group {
-    flex-direction: column;
-    align-items: stretch;
-  }
+    /* 🎮 Hidden Easter Egg Styles */
+    .bitcoin-rain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1000;
+      overflow: hidden;
+    }
 
-  .form-group label {
-    margin-bottom: 6px;
-    margin-right: 0;
-    text-align: left;
-    font-size: 0.8rem;
-    opacity: 0.85;
-  }
+    .bitcoin-symbol {
+      position: absolute;
+      color: #fca420;
+      font-size: 20px;
+      font-weight: bold;
+      animation: fall 3s linear infinite;
+    }
 
-  .password-wrap {
-    width: 100%;
-  }
+    @keyframes fall {
+      0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
 
-  .logo {
-    font-size: 2.2rem;
-    padding: 12px 0;
-  }
+    .block-countdown {
+      background: linear-gradient(45deg, #fca420, #ff8800);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
 
-  .card {
-    padding: 22px 16px;
-  }
-
-  .footer {
-    margin-top: 16px;
-  }
+    @keyframes glow {
+      from { filter: brightness(1); }
+      to { filter: brightness(1.3); }
     }
   </style>
 </head>
 <body>
   <div class="card">
     <div class="logo">STACKSWORTH</div>
-    <h2>Wi-Fi Setup</h2>
+    <h2>Wi-Fi Setup & Personalization</h2>
 
     <div class="device-select">
       <label><input type="radio" name="device" value="Matrix" checked> Matrix</label>
       <label><input type="radio" name="device" value="Spark"> Spark</label>
     </div>
 
-    <div class="form-group">
-      <label for="ssid">SSID Wi-Fi</label>
-      <input type="text" id="ssid" name="ssid" placeholder="Your Network">
-    </div>
+    <div class="form-container">
+      <!-- 🌐 LEFT COLUMN: Network & Location -->
+      <div class="form-column">
+        <div class="column-title">🌐 NETWORK & LOCATION</div>
+        
+        <div class="form-group">
+          <label for="ssid">SSID Wi-Fi</label>
+          <input type="text" id="ssid" name="ssid" placeholder="Your Network">
+        </div>
 
-          <div class="form-group">
-        <label for="password">Password:</label>
-        <div class="password-wrap">
-          <input type="password" id="password" name="password" maxlength="63" autocomplete="new-password">
-          <button type="button" class="pw-toggle" id="pwToggle" onclick="togglePassword()" aria-label="Show/hide password">👁</button>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <div class="password-wrap">
+            <input type="password" id="password" name="password" maxlength="63" autocomplete="new-password">
+            <button type="button" class="pw-toggle" id="pwToggle" onclick="togglePassword()" aria-label="Show/hide password">👁</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" id="city" name="city" placeholder="e.g. Calgary">
+        </div>
+
+        <div class="form-group">
+          <label for="timezone">Time Zone</label>
+          <select id="timezone" name="timezone">
+            <option value="0">UTC (+0)</option>
+            <option value="1">London (+0/+1)</option>
+            <option value="2">Paris (+1/+2)</option>
+            <option value="3">Helsinki (+2/+3)</option>
+            <option value="4">Moscow (+3)</option>
+            <option value="5">Tokyo (+9)</option>
+            <option value="6">Sydney (+10/+11)</option>
+            <option value="7">Auckland (+12/+13)</option>
+            <option value="8">Hawaii (-10)</option>
+            <option value="9">Alaska (-9/-8)</option>
+            <option value="10">Pacific (-8/-7)</option>
+            <option value="11" selected>Mountain (-7/-6)</option>
+            <option value="12">Central (-6/-5)</option>
+            <option value="13">Eastern (-5/-4)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="currency">Currency</label>
+          <select id="currency" name="currency">
+            <option value="USD" selected>US Dollar ($)</option>
+            <option value="CAD">Canadian Dollar (C$)</option>
+            <option value="EUR">Euro (€)</option>
+            <option value="GBP">British Pound (£)</option>
+            <option value="JPY">Japanese Yen (¥)</option>
+            <option value="AUD">Australian Dollar (A$)</option>
+            <option value="CHF">Swiss Franc (CHF)</option>
+            <option value="CNY">Chinese Yuan (¥)</option>
+            <option value="SEK">Swedish Krona (kr)</option>
+            <option value="NOK">Norwegian Krone (kr)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="theme">Display Theme</label>
+          <select id="theme" name="theme">
+            <option value="scroll" selected>Dynamic Scroll</option>
+            <option value="fade">Smooth Fade</option>
+          </select>
         </div>
       </div>
 
-    <div class="form-group">
-      <label for="city">City</label>
-      <input type="text" id="city" name="city" placeholder="e.g. Calgary">
+      <!-- ⚡ RIGHT COLUMN: Personalization -->
+      <div class="form-column">
+        <div class="column-title">⚡ PERSONALIZATION</div>
+        
+        <!-- 🚀 INDUSTRY FIRST: Custom Message Personalization -->
+        <div class="personalization-box" style="margin: 20px 0; padding: 20px; border: 2px dashed #fca420; border-radius: 8px; background: rgba(252, 164, 32, 0.05);">
+
+          <div style="color: #fca420; font-weight: bold; margin-bottom: 15px; text-align: center; font-size: 1.1rem;">
+            🔥 MAKE IT YOURS
+          </div>
+          <div style="color: #ccc; margin-bottom: 15px; text-align: center; font-size: 0.9rem;">
+            Revolutionary personal messaging - no competitor offers this!
+          </div>
+          
+          <div class="form-group">
+            <label for="toptext">Top Message</label>
+            <input type="text" id="toptext" name="toptext" maxlength="10" placeholder="e.g. STACK">
+          </div>
+          
+          <div class="form-group">
+            <label for="bottomtext">Bottom Message</label>
+            <input type="text" id="bottomtext" name="bottomtext" maxlength="10" placeholder="e.g. SATS">
+          </div>
+          
+          <div style="color: #888; font-size: 0.8rem; text-align: center; margin-top: 10px;">
+            10 characters max • Leave blank for Satoshi tribute<br>
+            <label style="margin-top: 5px; cursor: pointer;">
+              <input type="checkbox" id="autoCapitalize" style="margin-right: 5px;" checked> 
+              Auto-capitalize messages
+            </label>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label for="timezone">Time Zone</label>
-      <select id="timezone" name="timezone">
-        <option value="0">UTC (+0)</option>
-        <option value="1">London (+0/+1)</option>
-        <option value="2">Paris (+1/+2)</option>
-        <option value="3">Helsinki (+2/+3)</option>
-        <option value="4">Moscow (+3)</option>
-        <option value="5">Tokyo (+9)</option>
-        <option value="6">Sydney (+10/+11)</option>
-        <option value="7">Auckland (+12/+13)</option>
-        <option value="8">Hawaii (-10)</option>
-        <option value="9">Alaska (-9/-8)</option>
-        <option value="10">Pacific (-8/-7)</option>
-        <option value="11" selected>Mountain (-7/-6)</option>
-        <option value="12">Central (-6/-5)</option>
-        <option value="13">Eastern (-5/-4)</option>
-      </select>
+    <button class="button" onclick="saveAndReboot()" style="margin-top: 30px;">SAVE AND REBOOT</button>
+    <div class="version" style="margin-top: 15px;">
+      v2.0.3 – 2025
+      <div style="margin-top: 8px; font-size: 0.8rem; color: #888;">
+        <a href="https://stacksworth.com" target="_blank" style="color: #fca420; text-decoration: none;">STACKSWORTH • stacksworth.com</a> | 
+        Built by <a href="https://bitcoinmanor.com" target="_blank" style="color: #fca420; text-decoration: none;"><strong>Bitcoin Manor</strong> • bitcoinmanor.com</a>
+      </div>
     </div>
-
-    <div class="form-group">
-      <label for="currency">Currency</label>
-      <select id="currency" name="currency">
-        <option value="USD" selected>US Dollar ($)</option>
-        <option value="CAD">Canadian Dollar (C$)</option>
-        <option value="EUR">Euro (€)</option>
-        <option value="GBP">British Pound (£)</option>
-        <option value="JPY">Japanese Yen (¥)</option>
-        <option value="AUD">Australian Dollar (A$)</option>
-        <option value="CHF">Swiss Franc (CHF)</option>
-        <option value="CNY">Chinese Yuan (¥)</option>
-        <option value="SEK">Swedish Krona (kr)</option>
-        <option value="NOK">Norwegian Krone (kr)</option>
-      </select>
-    </div>
-
-    <div class="form-group">
-      <label for="theme">Display Theme</label>
-      <select id="theme" name="theme">
-        <option value="scroll" selected>Dynamic Scroll</option>
-        <option value="fade">Smooth Fade</option>
-      </select>
-    </div>
-
-    <button class="button" onclick="saveAndReboot()">SAVE AND REBOOT</button>
-    <div class="version">v0.1.0 – 2025</div>
   </div>
-  
-  <div class="footer">
-    STACKSWORTH • <a href="https://stacksworth.com" target="_blank">stacksworth.com</a>
-  </div>	
-  <div class="footer">
-    Built by <strong>Bitcoin Manor</strong> • <a href="https://bitcoinmanor.com" target="_blank">bitcoinmanor.com</a>
+
+  <!-- 📝 Bitcoin Wisdom - Full Width -->
+  <div style="margin: 20px 0; padding: 15px; border: 1px solid #333; border-radius: 8px; background: rgba(255, 255, 255, 0.02); max-width: 1000px; width: 95%;">
+    <div style="color: #fca420; font-weight: bold; margin-bottom: 10px; text-align: center;">
+      💭 BITCOIN WISDOM
+    </div>
+    <div id="btcQuote" style="color: #ccc; font-size: 0.8rem; font-style: italic; line-height: 1.3; text-align: center;">
+      Loading wisdom...
+    </div>
   </div>
 
   <div id="popup" class="popup">
@@ -313,6 +455,31 @@
 
 
   <script>
+  // 🎮 Konami Code Easter Egg
+  let konamiCode = [];
+  const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'];
+  
+  // 📈 Bitcoin Data & Easter Eggs
+  const satoshiQuotes = [
+    '"Being open source means anyone can independently review the code." - Satoshi',
+    '"The nature of Bitcoin is such that once version 0.1 was released, the core design was set in stone." - Satoshi',
+    '"I\'ve been working on a new electronic cash system that\'s fully peer-to-peer." - Satoshi',
+    '"If you don\'t believe it or don\'t get it, I don\'t have time to try to convince you." - Satoshi',
+    '"The root problem with conventional currency is all the trust that\'s required." - Satoshi',
+    '"Bitcoin: A purely peer-to-peer version of electronic cash." - Satoshi',
+    '"Running Bitcoin" - Hal Finney, January 11, 2009',
+    '"I\'m pretty excited about this new Bitcoin system." - Hal Finney',
+    '"I thought I was dealing with a young man of Japanese ancestry." - Hal Finney on Satoshi',
+    '"Bitcoin seems to be a very promising idea." - Hal Finney',
+    'Bitcoin Genesis Block: January 3, 2009',
+    'First Bitcoin transaction: Hal Finney received 10 BTC from Satoshi',
+    'Bitcoin Pizza Day: May 22, 2010 - 10,000 BTC for 2 pizzas',
+    'Bitcoin halving occurs approximately every 4 years'
+  ];
+
+  let currentQuoteIndex = 0;
+  let konamiActivated = false;
+
   function saveAndReboot() {
     const form = new FormData();
     form.append("ssid", document.getElementById("ssid").value);
@@ -321,6 +488,8 @@
     form.append("timezone", document.getElementById("timezone").value);
     form.append("currency", document.getElementById("currency").value);
     form.append("theme", document.getElementById("theme").value);
+    form.append("toptext", document.getElementById("toptext").value);
+    form.append("bottomtext", document.getElementById("bottomtext").value);
     form.append("device", document.querySelector('input[name="device"]:checked').value);
 
     fetch("/save", {
@@ -345,33 +514,138 @@
     });
   }
 
-    function showPopup() {
+  function showPopup() {
     const popup = document.getElementById("popup");
     popup.style.display = "block";
     setTimeout(() => { popup.style.opacity = "1"; }, 10);
   }
 
-
-    function hidePopup() {
+  function hidePopup() {
     const popup = document.getElementById("popup");
     popup.style.opacity = "0";
     setTimeout(() => { popup.style.display = "none"; }, 500);
   }
 
-    function togglePassword() {
-      const passwordInput = document.getElementById('password');
-      const toggleButton = document.getElementById('pwToggle');
-      
-      if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-        toggleButton.innerHTML = '🙈';
-        toggleButton.setAttribute('aria-label', 'Hide password');
-      } else {
-        passwordInput.type = 'password';
-        toggleButton.innerHTML = '👁';
-        toggleButton.setAttribute('aria-label', 'Show password');
-      }
+  function togglePassword() {
+    const passwordInput = document.getElementById('password');
+    const toggleButton = document.getElementById('pwToggle');
+    
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      toggleButton.innerHTML = '🙈';
+      toggleButton.setAttribute('aria-label', 'Hide password');
+    } else {
+      passwordInput.type = 'password';
+      toggleButton.innerHTML = '👁';
+      toggleButton.setAttribute('aria-label', 'Show password');
     }
+  }
+
+  // 🎮 Bitcoin Rain Easter Egg (Konami Code)
+  function startBitcoinRain() {
+    if (konamiActivated) return;
+    konamiActivated = true;
+    
+    const rainContainer = document.createElement('div');
+    rainContainer.className = 'bitcoin-rain';
+    document.body.appendChild(rainContainer);
+
+    const symbols = ['₿', '💎', '🚀', '⚡', '💰', '🌕'];
+    
+    for (let i = 0; i < 21; i++) { // 21 for 21 million BTC
+      setTimeout(() => {
+        const symbol = document.createElement('div');
+        symbol.className = 'bitcoin-symbol';
+        symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        symbol.style.left = Math.random() * 100 + '%';
+        symbol.style.animationDelay = Math.random() * 2 + 's';
+        symbol.style.animationDuration = (2 + Math.random() * 3) + 's';
+        rainContainer.appendChild(symbol);
+      }, i * 200);
+    }
+
+    // Clean up after animation
+    setTimeout(() => {
+      if (rainContainer.parentNode) {
+        rainContainer.parentNode.removeChild(rainContainer);
+      }
+      konamiActivated = false;
+    }, 8000);
+  }
+
+  // 🧠 Rotate Satoshi quotes
+  function rotateSatoshiQuote() {
+    document.getElementById('btcQuote').textContent = satoshiQuotes[currentQuoteIndex];
+    currentQuoteIndex = (currentQuoteIndex + 1) % satoshiQuotes.length;
+  }
+
+  // 🎮 Konami Code listener
+  document.addEventListener('keydown', function(event) {
+    konamiCode.push(event.code);
+    if (konamiCode.length > konamiSequence.length) {
+      konamiCode.shift();
+    }
+    
+    if (konamiCode.length === konamiSequence.length && 
+        konamiCode.every((code, index) => code === konamiSequence[index])) {
+      startBitcoinRain();
+      konamiCode = [];
+    }
+  });
+
+  // 🚀 Initialize on page load
+  document.addEventListener('DOMContentLoaded', function() {
+    try {
+      // ✅ Core functionality first - make sure inputs work
+      const toptext = document.getElementById('toptext');
+      const bottomtext = document.getElementById('bottomtext');
+      const autoCapitalize = document.getElementById('autoCapitalize');
+      
+      if (toptext && bottomtext && autoCapitalize) {
+        // Smart capitalization based on user preference
+        function handleTextInput(e) {
+          if (autoCapitalize.checked) {
+            e.target.value = e.target.value.toUpperCase();
+          }
+        }
+        
+        // Auto-capitalize custom message inputs (if enabled)
+        toptext.addEventListener('input', handleTextInput);
+        bottomtext.addEventListener('input', handleTextInput);
+        
+        // Update existing text when checkbox changes
+        autoCapitalize.addEventListener('change', function() {
+          if (this.checked) {
+            toptext.value = toptext.value.toUpperCase();
+            bottomtext.value = bottomtext.value.toUpperCase();
+            // Update placeholders to show caps
+            toptext.placeholder = "e.g. STACK";
+            bottomtext.placeholder = "e.g. SATS";
+          } else {
+            // Update placeholders to show mixed case
+            toptext.placeholder = "e.g. Bitcoin";
+            bottomtext.placeholder = "e.g. Satoshi";
+          }
+        });
+      }
+      
+      // ✅ Start quote rotation
+      try {
+        rotateSatoshiQuote();
+        
+        // Rotate quote every 10 seconds
+        setInterval(rotateSatoshiQuote, 10000);
+      } catch (quoteError) {
+        console.log('📝 Quote rotation disabled');
+      }
+      
+      console.log('🎮 Try the Konami Code: ↑↑↓↓←→←→BA');
+      console.log('🚀 STACKSWORTH Matrix v2.0.3 - Built by Bitcoin Manor');
+      console.log('⚡ First Bitcoin matrix with custom message personalization!');
+    } catch (error) {
+      console.log('🔧 Portal initialized in minimal mode');
+    }
+  });
 
 
 </script>
@@ -379,3 +653,4 @@
 
 </body>
 </html>
+
